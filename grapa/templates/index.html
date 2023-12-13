@@ -1,0 +1,43 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Cartelera de Películas</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Cartelera de Películas</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for peliculas in peliculas %}
+                    <tr>
+                        <td>{{ peliculas.id }}</td>
+                        <td>{{ peliculas.titulo }}</td>
+                        <td>{{ peliculas.descripcion }}</td>
+                        <td><img src="static/archivos/{{peliculas.imagen }}" alt="{{ peliculas.titulo }}" style="max-width: 100px;"></td>
+                        <td>
+                            <a href="{{ url_for('editar', id=peliculas.id) }}">Editar</a> |
+                            <a href="{{ url_for('eliminar_pelicula', id=peliculas.id) }}">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('agregar') }}">Agregar Película</a>
+    </div>
+</body>
+</html>
+
+
+
